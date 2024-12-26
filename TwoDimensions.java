@@ -77,6 +77,7 @@ class TwoDimensions {
         int length = values.length;
         if (length <= 2) {
             System.out.println("Impossible to tell");
+            return;
         }
 
         // we ask Player 1 to choose a colour
