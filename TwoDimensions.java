@@ -25,7 +25,7 @@ class TwoDimensions {
                 if (values[i][j] == 1) {
                     numbers[0]++;
                 }
-                if (values[i][j] == 2) {
+                else if (values[i][j] == 2) {
                     numbers[1]++;
                 }
             }
