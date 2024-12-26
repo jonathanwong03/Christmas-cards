@@ -32,6 +32,7 @@ class Christmas {
         do {
             System.out.println("Select a card you will like to flip: ");
             int idx = sc.nextInt();
+            idx -= 1;
             // tackle the edge cases first
             if (idx == 0) {
                 xmas_cards[0] = !xmas_cards[0];
