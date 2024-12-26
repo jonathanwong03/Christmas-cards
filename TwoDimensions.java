@@ -44,6 +44,26 @@ class TwoDimensions {
         return turn % 2 != 0 ? "Player 1" : "Player 2";
     }
 
+    public static void modify_array(int[][] values, int row_coordinate, int column_coordinate, int length) {
+        for (int r = -1; r < 2; r++) {
+            for (int c = -1; c < 2; c++) {
+                // tackle the edge cases first to make sure index is not out of bounds
+                if (row_coordinate + r < 0 || row_coordinate + r > length - 1 ) {
+                    continue;
+                }
+                else if (column_coordinate + c < 0 || column_coordinate + c > length - 1) {
+                    continue;
+                }
+                else if (values[row_coordinate + r][column_coordinate + c] == 1) {
+                    values[row_coordinate + r][column_coordinate + c] = 2;
+                }
+                else if (values[row_coordinate + r][column_coordinate + c] == 2) {
+                    values[row_coordinate + r][column_coordinate + c] = 1;
+                }
+            }
+        }
+    }
+
     public static void print_winner(int p1_colour, int winning_colour) {
         if (p1_colour == winning_colour) {
             System.out.println("Player 1 wins");
@@ -100,26 +120,11 @@ class TwoDimensions {
                 int row_coordinate = coordinate / length;
                 int column_coordinate = (coordinate % length) - 1;
 
-                // check the surrounding 8 squares, and tackle edge cases 
-                for (int r = -1; r < 2; r++) {
-                    for (int c = -1; c < 2; c++) {
-                        // tackle the edge cases
-                        if (row_coordinate + r < 0 || row_coordinate + r > length - 1 ) {
-                            continue;
-                        }
-                        else if (column_coordinate + c < 0 || column_coordinate + c > length - 1) {
-                            continue;
-                        }
-                        else if (values[row_coordinate + r][column_coordinate + c] == 1) {
-                            values[row_coordinate + r][column_coordinate + c] = 2;
-                        }
-                        else if (values[row_coordinate + r][column_coordinate + c] == 2) {
-                            values[row_coordinate + r][column_coordinate + c] = 1;
-                        }
-                    }
-                }
+                // check the surrounding 8 squares, and tackle edge cases
+                modify_array(values, row_coordinate, column_coordinate, length);
                 turn++;
             }
+
             winning_colour = get_colour(values);
         }
 
