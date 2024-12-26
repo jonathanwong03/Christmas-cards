@@ -127,6 +127,9 @@ class TwoDimensions {
 
     }
     public static void main(String[] args) {
+        // 0 = empty position
+        // 1 = green card
+        // 2 = red card
         int[][] values = {{0, 1, 0, 0}, {0, 1, 0, 0}, {0, 2, 2, 0}, {0, 0, 0, 0}};
         Scanner sc = new Scanner(System.in);
         get_winner(values, sc);
