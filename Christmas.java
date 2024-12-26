@@ -40,7 +40,7 @@ class Christmas {
         int length = xmas_cards.length;
 
         // check to see if there are only 2 cards or less
-        if (length <= 2) {
+        if (length <= 3) {
             System.out.println("Impossible to tell");
             return;
         }
