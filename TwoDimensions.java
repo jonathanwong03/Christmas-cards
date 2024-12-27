@@ -15,13 +15,13 @@ class TwoDimensions {
         return colour.equals("Green") || colour.equals("green") ? 1 : 2; 
     }
 
-    public static int get_colour(int[][] values) {
+    public static int get_colour(int[][] values, int length) {
        // create an array to keep track of the 1s and 2s
        int[] numbers = {0, 0};
        
        // first one represents number of 1s, second one represents number of 2s
-       for (int i = 0; i < values.length; i++) {
-            for (int j = 0; j < values.length; j++) {
+       for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length; j++) {
                 if (values[i][j] == 1) {
                     numbers[0]++;
                 }
@@ -77,6 +77,7 @@ class TwoDimensions {
         int length = values.length;
         if (length <= 2) {
             System.out.println("Impossible to tell");
+            return;
         }
 
         // we ask Player 1 to choose a colour
@@ -86,7 +87,7 @@ class TwoDimensions {
         int turn = 1;
 
         // we can create a hashmap to link each card to each position in the array
-        Map m = new HashMap();
+        Map<Integer, Integer> m = new HashMap<Integer, Integer>();
         int arr_position = 0;
         int count = 0;
         for (int i = 0; i < length; i++) {
@@ -102,7 +103,7 @@ class TwoDimensions {
         // -1: mix of 1s and 2s (there is no winning colours)
         // 1: only contain 1s
         // 2: only contain 2s
-        int winning_colour = get_colour(values);
+        int winning_colour = get_colour(values, length);
         
         // now, we start the game
         while (winning_colour == -1) {
@@ -116,7 +117,7 @@ class TwoDimensions {
 
             else {
                 // now, we determine the position of the card based on the key
-                int coordinate = (int) m.get(card);
+                int coordinate = m.get(card);
                 int row_coordinate = coordinate / length;
                 int column_coordinate = (coordinate % length) - 1;
 
@@ -125,7 +126,7 @@ class TwoDimensions {
                 turn++;
             }
 
-            winning_colour = get_colour(values);
+            winning_colour = get_colour(values, length);
         }
 
         print_winner(p1_colour, winning_colour);
